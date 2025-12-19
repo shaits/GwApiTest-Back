@@ -1,0 +1,17 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "backend.name" . }}-route
+spec:
+  parentRefs:
+    - name: {{ .Values.gateway.name }}
+  hostnames:
+    - {{ .Values.gateway.hostname | quote }}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: {{ include "backend.name" . }}
+          port: {{ .Values.service.port }}

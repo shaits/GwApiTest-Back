@@ -7,5 +7,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+EXPOSE 5000
+
 # Use Gunicorn for production
 CMD ["gunicorn", "--config", "gunicorn_config.py", "app:app"]

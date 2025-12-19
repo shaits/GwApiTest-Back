@@ -1,0 +1,17 @@
+replicaCount: 1
+
+image:
+  repository: shaitsabar/backend-test
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+gateway:
+  # If you already have a GatewayClass in the cluster, set createGatewayClass: false
+  createGatewayClass: true
+  gatewayClassName: my-gateway-class
+  name: web-gateway-backend
+  hostname: "myapp.local"   # change to something that matches your setup
